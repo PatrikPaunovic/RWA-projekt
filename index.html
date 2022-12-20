@@ -1,16 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Globle: Daily Country Guessing</title>
+    <link rel="stylesheet" type="text/css" href="style.css" />
     <script src="globle.js"></script>
-    <title>Document</title>
 </head>
 
 <body>
-
+    <h1>Globle: Daily Country Guessing</h1>
+    <h2>Mystery Country Clues:</h2>
+    <ul id="clues-list"></ul>
+    <br />
+    <label for="guess-input">Enter your guess:</label>
+    <input type="text" id="guess-input" />
+    <button id="guess-button">Submit Guess</button>
+    <br />
+    <p id="result-message"></p>
+    <script src="game.js"></script>
 </body>
 
 </html>
