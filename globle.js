@@ -31,13 +31,13 @@ async function selectMysteryCountry() {
     const res = await fetch("http://localhost:5000/countries/" + randomId);
     const data = await res.json();
     console.log(data[0]);
-    const {id, name, hint_1, hint_2, hint_3, hint_4, hint_5} = data[0];
-    console.log(name); 
+    const { id, name, hint_1, hint_2, hint_3, hint_4, hint_5 } = data[0];
+    console.log(name);
 
     return data[0];
 }
 
-function loadHints(mysteryCountry){
+function loadHints(mysteryCountry) {
     document.getElementById("hint1").innerHTML = '1. ' + mysteryCountry['hint_1'];
     document.getElementById("hint2").innerHTML = '2. ' + mysteryCountry['hint_2'];
     document.getElementById("hint3").innerHTML = '3. ' + mysteryCountry['hint_3'];
@@ -47,20 +47,20 @@ function loadHints(mysteryCountry){
 
 // Define a function to start the game
 async function startGame() {
-    let count = 1;
+    let count = 2;
 
     // Select a random mystery country
     const mysteryCountry = await selectMysteryCountry();
     console.log(mysteryCountry['hint_1']);
 
     loadHints(mysteryCountry);
-    
+
     document.getElementById("hint1").style.display = 'block';
-    document.getElementById("hint2").style.display = 'block';
+    /*document.getElementById("hint2").style.display = 'block';
     document.getElementById("hint3").style.display = 'block';
     document.getElementById("hint4").style.display = 'block';
-    document.getElementById("hint5").style.display = 'block';
-   
+    document.getElementById("hint5").style.display = 'block';*/
+
 
     // Display the clues for the mystery country
     /*const cluesList = document.getElementById("clues-list");
@@ -85,6 +85,11 @@ async function startGame() {
             resultMessage.innerText = "Correct! The mystery country is " + mysteryCountry.name;
         } else {
             // Display a message indicating that the guess is incorrect
+            if (count < 6) {
+                const nextHint = document.getElementById(`hint${count}`);
+                nextHint.style.display = 'block';
+                count++;
+            }
             const resultMessage = document.getElementById("result-message");
             resultMessage.innerText = "Incorrect. Please try again.";
         }
