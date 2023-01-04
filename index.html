@@ -11,14 +11,20 @@
 <body>
     <h1>Globle: Daily Country Guessing</h1>
     <h2>Mystery Country Clues:</h2>
-    <ul id="clues-list"></ul>
+    <ul id="clues-list">
+        <li id="hint1" style="display: none"></li>
+        <li id="hint2" style="display: none"></li>
+        <li id="hint3" style="display: none"></li>
+        <li id="hint4" style="display: none"></li>
+        <li id="hint5" style="display: none"></li>
+    </ul>
     <br />
     <label for="guess-input">Enter your guess:</label>
     <input type="text" id="guess-input" />
     <button id="guess-button">Submit Guess</button>
     <br />
     <p id="result-message"></p>
-    <script src="game.js"></script>
+
 </body>
 
 </html>
