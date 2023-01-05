@@ -1,10 +1,30 @@
 body {
     font-family: Arial, sans-serif;
+    background-color: rgb(201, 201, 250);
 }
 
 h1 {
-    color: darkblue;
+    color: rgb(201, 201, 250);
     text-align: center;
+    animation: text-reveal 0.5s ease-in forwards;
+}
+h2{
+    color: rgb(201, 201, 250);
+    animation: text-reveal2 0.5s ease-in forwards;
+}
+
+#result-message{
+    animation: text-reveal2 0.5s ease-in forwards;
+}
+@keyframes text-reveal{
+    100%{
+        color: blue;
+    }
+}
+@keyframes text-reveal2{
+    100%{
+        color: rgb(47, 47, 95);
+    }
 }
 
 label {
@@ -24,13 +44,20 @@ button {
     border: none;
     border-radius: 3px;
     background-color: darkblue;
-    color: white;
-    font-weight: bold;
-    cursor: pointer;
+    display: inline-block;
+      color: black;
+      background-color: transparent;
+      border: 2px solid darkblue;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: .1rem;
+      margin-top: 20px;
+      transition: .3s ease background-color;
+      transition-property: background-color,color;
 }
 
 button:hover {
-    background-color: lightblue;
+    background-color: rgb(107, 196, 226);
 }
 
 p#result-message {

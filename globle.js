@@ -98,3 +98,5 @@ async function startGame() {
 
 // Start the game when the page loads
 window.addEventListener("load", startGame);
+const links = document.querySelectorAll('a[href^="#"]');
+

@@ -1,11 +1,17 @@
+html{
+  scroll-behavior: smooth;
+  background-color: rgb(201, 201, 250);
+}
+
 #navbar {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    background-color: #333;
+    background-color: rgb(111, 111, 221);
     overflow: hidden;
     z-index: 1;
+    
   }
   
   #navbar ul {
@@ -32,12 +38,20 @@
   #Home{
     padding-top: 3em;
     padding-bottom: 10em;
+    display: flex;          /* Enable flexbox layout */
+    align-items: center;    /* Center the element vertically */
+    width: 50%;            /* Set the width of the element */
+    margin: auto; 
   }
   #Game1{
      display: flex;
   align-items: center;
   flex-direction: column;
   justify-content: center;
+  display: flex;          /* Enable flexbox layout */
+  align-items: center;    /* Center the element vertically */
+  width: 50%;            /* Set the width of the element */
+  margin: auto; 
   }
 
   #Game2{
@@ -45,4 +59,27 @@
  align-items: center;
  flex-direction: column;
  justify-content: center;
+ display: flex;          /* Enable flexbox layout */
+ align-items: center;    /* Center the element vertically */
+ width: 50%;            /* Set the width of the element */
+ margin: auto; 
  }
+
+#gamebutton{
+  display: inline-block;
+      padding: 8px 15px;
+      color: black;
+      background-color: transparent;
+      border: 2px solid darkblue;
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: .1rem;
+      margin-top: 20px;
+      transition: .3s ease background-color;
+      transition-property: background-color,color;
+  }
+  #gamebutton:hover{
+    color: whitesmoke;
+    background-color: darkblue;
+
+}
