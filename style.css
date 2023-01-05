@@ -16,6 +16,7 @@ h2{
 #result-message{
     animation: text-reveal2 0.5s ease-in forwards;
 }
+
 @keyframes text-reveal{
     100%{
         color: blue;
@@ -26,6 +27,7 @@ h2{
         color: rgb(47, 47, 95);
     }
 }
+
 
 label {
     display: block;

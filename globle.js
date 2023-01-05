@@ -48,7 +48,7 @@ function loadHints(mysteryCountry) {
 // Define a function to start the game
 async function startGame() {
     let count = 2;
-
+    
     // Select a random mystery country
     const mysteryCountry = await selectMysteryCountry();
     console.log(mysteryCountry['hint_1']);
@@ -77,21 +77,31 @@ async function startGame() {
         // Get the player's guess from the input field
         const guessInput = document.getElementById("guess-input");
         const guess = guessInput.value;
-
+        const resultMessage = document.getElementById("result-message");
+        let retry = false
         // Check if the guess is correct
-        if (guess.toLowerCase() === mysteryCountry.name.toLowerCase()) {
+        if (guess.toLowerCase() === mysteryCountry.name.toLowerCase() && count < 6) {
             // Display a message indicating that the guess is correct
-            const resultMessage = document.getElementById("result-message");
             resultMessage.innerText = "Correct! The mystery country is " + mysteryCountry.name;
         } else {
             // Display a message indicating that the guess is incorrect
             if (count < 6) {
-                const nextHint = document.getElementById(`hint${count}`);
-                nextHint.style.display = 'block';
+                //const nextHint = document.getElementById(`hint${count}`);
+               // nextHint.style.display = 'block';
+               const nextHint = document.getElementById('clues-list');
+               nextHint.innerHTML += count+ ". " + mysteryCountry['hint_'+count] + "<br>";
                 count++;
-            }
-            const resultMessage = document.getElementById("result-message");
             resultMessage.innerText = "Incorrect. Please try again.";
+            }
+            else{
+                resultMessage.innerText = "Izgubili ste, točna država je bila " + mysteryCountry.name;
+                //retry provjerava ako je izgubio da se moze stvoriti button za restartanje igre
+                retry = true;
+            }
+            
+        }
+        if(retry == true){
+            document.getElementById('retry').innerHTML = "<button> Retry </button>";
         }
     });
 }
