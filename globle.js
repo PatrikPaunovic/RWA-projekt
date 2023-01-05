@@ -80,7 +80,7 @@ async function startGame() {
         const resultMessage = document.getElementById("result-message");
         let retry = false
         // Check if the guess is correct
-        if (guess.toLowerCase() === mysteryCountry.name.toLowerCase() && count < 6) {
+        if (guess.toLowerCase() === mysteryCountry.name.toLowerCase() && count <= 6) {
             // Display a message indicating that the guess is correct
             resultMessage.innerText = "Correct! The mystery country is " + mysteryCountry.name;
         } else {
