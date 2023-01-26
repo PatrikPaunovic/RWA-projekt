@@ -3,37 +3,44 @@
 
 <head>
     <title>Globle: Daily Country Guessing</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     <link rel="stylesheet" type="text/css" href="style.css" />
     <script src="globle.js"></script>
-    <!--Tu promijeniti iz globle.js u globle.php sta god vec, koristimo bazapodataka.pgsql-->
 </head>
 
 <body>
-    <h1>Globle: Daily Country Guessing</h1>
-    <h2>Mystery Country Clues:</h2>
-    <div id="clues">
-    <ul id="clues-list">
-        <li id="hint1" style="display: none"></li>
-        <li id="hint2" style="display: none"></li>
-        <li id="hint3" style="display: none"></li>
-        <li id="hint4" style="display: none"></li>
-        <li id="hint5" style="display: none"></li>
-    </ul>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center text-primary">Globle: Daily Country Guessing</h1>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6 col-md-offset-3">
+                <h2>Mystery Country Clues:</h2>
+                <ul id="clues-list" class="list-group">
+                    <li id="hint1" class="list-group-item" style="display: none"></li>
+                    <li id="hint2" class="list-group-item" style="display: none"></li>
+                    <li id="hint3" class="list-group-item" style="display: none"></li>
+                    <li id="hint4" class="list-group-item" style="display: none"></li>
+                    <li id="hint5" class="list-group-item" style="display: none"></li>
+                </ul>
+                <form>
+                    <div class="form-group">
+                        <label for="guess-input" class="tekst_pogadanja">Enter your guess:</label>
+                        <input type="text" class="form-control" id="guess-input">
+                    </div>
+                    <button type="submit" id="guess-button" class="btn btn-primary">Submit Guess</button>
+                </form>
+                <br>
+                <p id="result-message" class="alert"></p>
+                <a href="index.html">
+                    <div id="retry" class="btn btn-danger">Retry</div>
+                </a>
+            </div>
+        </div>
     </div>
-    <br />
-    <label for="guess-input">Enter your guess:</label>
-    <input type="text" id="guess-input" />
-    <button id="guess-button">Submit Guess</button>
-    <br />
-    <p id="result-message"></p>
-    <a href="index.html">
-    <div id = "retry">
-        
-        
-    
-    </div>
-    </a>
-
 </body>
 
 </html>
