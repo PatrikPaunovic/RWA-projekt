@@ -69,6 +69,56 @@ app.delete("/countries/:id", async(req, res) => {
     }
 });
 
+
+//get all
+app.get("/coordinates", async(req, res) => {
+    try {
+        const allCountries = await pool.query("SELECT * FROM coordinates");
+        res.json(allCountries.rows);
+    } catch (error) {
+        console.error(error.message);
+    }
+});
+
+//get names
+app.get("/coordinates/names", async(req, res) => {
+    try {
+        //console.log(req.params);
+        const {id} = req.params;
+        const country = await pool.query("SELECT name FROM coordinates ORDER BY id");
+        res.json(country.rows);
+    } catch (error) {
+        console.error(error.message);
+    }
+});
+
+//get
+app.get("/coordinates/:id", async(req, res) => {
+    try {
+        //console.log(req.params);
+        const {id} = req.params;
+        const country = await pool.query("SELECT * FROM coordinates WHERE id=$1",[id]);
+        res.json(country.rows);
+    } catch (error) {
+        console.error(error.message);
+    }
+});
+
+//update
+app.put("/coordinates/:id", async(req, res) => {
+    try {
+        //console.log(req.params);
+        const {id} = req.params;
+        const {dms_e, dms_n} = req.body;
+        const updateCountry = await pool.query("UPDATE coordinates SET dms_e = $1, dms_n = $2 WHERE id = $3",[dms_e, dms_n, id]);
+        res.json("coordinates were updated");
+    } catch (error) {
+        console.error(error.message);
+    }
+});
+
+
+
 app.listen(5000, () => {
     console.log("server has started on port 5000");
 });
