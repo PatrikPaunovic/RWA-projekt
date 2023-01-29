@@ -46,6 +46,32 @@ input[type="text"] {
     border: 1px solid gray;
     border-radius: 3px;
 }
+#hint1{
+    background-color: #5b6d80;
+    color: rgb(255, 255, 255);;
+}
+#hint2{
+    background-color: #5b6d80;
+    color: rgb(255, 255, 255);;
+}
+#hint3{
+    background-color: #5b6d80;
+    color: rgb(255, 255, 255);;
+}
+#hint4{
+    background-color: #5b6d80;
+    color: rgb(255, 255, 255);;
+}
+#hint5{
+    background-color: #5b6d80;
+    color: rgb(255, 255, 255);;
+}
+li {
+    height: 3.7em;
+    text-align: center;
+    
+    
+}
 
 button {
     padding: 5px 10px;

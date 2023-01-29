@@ -12,12 +12,13 @@ async function selectMysteryCountry() {
     return data[0];
 }
 
-function loadHints(mysteryCountry) {
-    document.getElementById("hint1").innerHTML = '1. ' + mysteryCountry['hint_1'];
-    document.getElementById("hint2").innerHTML = '2. ' + mysteryCountry['hint_2'];
-    document.getElementById("hint3").innerHTML = '3. ' + mysteryCountry['hint_3'];
-    document.getElementById("hint4").innerHTML = '4. ' + mysteryCountry['hint_4'];
-    document.getElementById("hint5").innerHTML = '5. ' + mysteryCountry['hint_5'];
+function loadHints(mysteryCountry,guess) {
+
+    document.getElementById("hint" + guess).innerHTML = guess +'. ' + mysteryCountry['hint_'+guess];
+   // document.getElementById("hint2").innerHTML = '2. ' + mysteryCountry['hint_2'];
+    //document.getElementById("hint3").innerHTML = '3. ' + mysteryCountry['hint_3'];
+   // document.getElementById("hint4").innerHTML = '4. ' + mysteryCountry['hint_4'];
+   // document.getElementById("hint5").innerHTML = '5. ' + mysteryCountry['hint_5'];
 
 
 }
@@ -25,45 +26,55 @@ function loadHints(mysteryCountry) {
 // Define a function to start the game
 async function startGame() {
     let count = 2;
-
+    
     // Select a random mystery country
     const mysteryCountry = await selectMysteryCountry();
     console.log(mysteryCountry['hint_1']);
-
-    loadHints(mysteryCountry);
-
-    document.getElementById("hint1").style.display = 'block';
+    let guesscounter = 1;
+    loadHints(mysteryCountry,1);
+    
+    //document.getElementById("hint1").style.display = 'block';
 
 
     // Set up event listener for the guess button
     const guessButton = document.getElementById("guess-button");
     guessButton.addEventListener("click", (event) => {
         event.preventDefault();
+        guesscounter++;
+        if(guesscounter < 6)
+        loadHints(mysteryCountry,guesscounter);
+
+        
         // Get the player's guess from the input field
-        const guessInput = document.getElementById("guess-input");
+        
+        let guessInput = document.getElementById("guess-input");
         const guess = guessInput.value;
         const resultMessage = document.getElementById("result-message");
-        let retry = false
+        guessInput.value = "";
+        
+       if(guess < 6){
         // Check if the guess is correct
-        if (guess.toLowerCase() === mysteryCountry.name.toLowerCase() && count <= 6) {
+        if (guess.toLowerCase() === mysteryCountry.name.toLowerCase() && guesscounter <= 6) {
             // Display a message indicating that the guess is correct
             resultMessage.innerText = "Correct! The mystery country is " + mysteryCountry.name;
         } else {
             // Display a message indicating that the guess is incorrect
-            if (count < 6) {
-                const nextHint = document.getElementById(`hint${count}`);
-                nextHint.style.display = 'block';
-                count++;
+            if (guesscounter < 6) {
                 resultMessage.innerText = "Incorrect. Please try again.";
-            } else {
+
+            } else if(guesscounter >= 6){
                 resultMessage.innerText = "Izgubili ste, točna država je bila " + mysteryCountry.name;
-                retry = true;
+                var element = document.getElementById("guess-input");
+                element.remove();
+                element = document.getElementById("submit-button");
+                var element2 = document.getElementById("guess-button");
+                element2.remove();
             }
         }
-
-        if (retry == true) {
-            document.getElementById('retry').innerHTML = "<button> Retry </button>";
-        }
+    }
+        //if (retry == true) {
+         //   document.getElementById('retry').innerHTML = "<button> Retry </button>";
+        //}
     });
 }
 
