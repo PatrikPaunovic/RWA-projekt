@@ -93,9 +93,7 @@ async function startGame() {
                 }
                 
             }
-            if(retry == true){
-                document.getElementById('retry').innerHTML = "<button> Retry </button>";
-            }
+           
         }
         
     });
