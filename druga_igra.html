@@ -5,21 +5,31 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="style.css" />
         <link rel="stylesheet" type="text/css" href="style_drugaigra.css" />
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" integrity="sha384-vp86vTRFVJgpjF9jiIGPEEqYqlDwgyBgEF109VFjmqGmIY/Y4HV4d3Gp2irVfcrp" crossorigin="anonymous" referrerpolicy="no-referrer">
+
         <script src="secondGame.js"></script>
     </head>
 
     <body>
-        <div id="centriraj">
-        <h1 class="text-center text-primary">Globle: Daily Country Guessing</h1>                    
-                        <label for="guess-input" class="tekst_pogadanja">Enter your guess:</label>
-                        <input type="text" class="form-control" id="guess-input">
+        
+            <div id="file">
+            <h1 class="text-center text-primary">Globle: Daily Country Guessing</h1>   
+            <img id="country"/>                 
+            <label for="guess-input" class="tekst_pogadanja">Upiši pokušaj:</label>
+            <div id="odgovor">
+            <input type="text" class="form-control" id="guess-input">
+            <img id="direction" src="images/quest.png">
+        </div>
                         <p id="result-message"></p>
-                    <button type="submit" id="guess-button" class="btn btn-primary">Submit Guess</button>
+                    <button type="submit" id="guess-button" class="btn btn-primary">Ispitaj pokušaj</button>
                 
                 <br>
                 <p id="result-message" class="alert"></p>
-                <a href="index.html">
-                    <div id="retry" class="btn btn-danger">Retry</div>
+                <div id="">
+                   
+                </div>
+                <a href="druga_igra.html">
+                    <button id="retry" class="btn btn-danger">Pokreni igru ponovno
                 </a>
             </div>
     </body>

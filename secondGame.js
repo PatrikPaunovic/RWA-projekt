@@ -11,7 +11,13 @@ async function selectMysteryCountry() {
     const { id, name, dms_e, dms_n } = data[0];
     console.log('mystery '+name);
 
+    showPicture(id);
     return data[0];
+}
+
+function showPicture(id){
+    document.getElementById("country").style = "height: 100px";
+    document.getElementById("country").src = "/images/country" + id + ".png"
 }
 
 async function startGame() {
@@ -55,6 +61,8 @@ async function startGame() {
             if (guess.toLowerCase() === mysteryCountry.name.toLowerCase() && count <= 6) {
                 // Display a message indicating that the guess is correct
                 resultMessage.innerText = "Correct! The mystery country is " + mysteryCountry.name;
+                document.getElementById("guess-input").remove()
+                document.getElementById("guess-button").remove()
             } else {
                 // Display a message indicating that the guess is incorrect
                 if (count < 6) {
@@ -85,9 +93,12 @@ async function startGame() {
                     direction(northGuess,eastGuess,northMistery,eastMistery);
 
                     resultMessage.innerText = "Incorrect. Distance = " + (haversine(northGuess,eastGuess,northMistery,eastMistery)/1000).toFixed(2) + "km, dir = " + direction(northGuess,eastGuess,northMistery,eastMistery) + ". Please try again.";
+                    document.getElementById("guess-input").value = "";
                 }
                 else{
                     resultMessage.innerText = "Izgubili ste, točna država je bila " + mysteryCountry.name;
+                    document.getElementById("guess-input").remove()
+                    document.getElementById("guess-button").remove()
                     //retry provjerava ako je izgubio da se moze stvoriti button za restartanje igre
                     retry = true;
                 }
@@ -129,33 +140,44 @@ function direction(lat1, lon1, lat2, lon2){
 
 
     let dir = '';
-    if(angle < -157.5){
-        dir = 'W';
-    }
-    else if(angle < -112.5){
-        dir = 'SW';
-    }
-    else if(angle < -67.5){
-        dir = 'S';
-    }
-    else if(angle < -22.5){
-        dir = 'SE';
-    }
-    else if(angle < 22.5){
-        dir = 'E';
-    }
-    else if(angle < 67.5){
-        dir = 'NE';
-    }
-    else if(angle < 112.5){
-        dir = 'N';
-    }
-    else if(angle < 157.5){
-        dir = 'NW';
-    }
-    else{
-        dir = 'W';
-    }
+if(angle < -157.5){
+    dir = 'W';
+    document.getElementById("direction").src = "images/lijevo.png"
+}
+else if(angle < -112.5){
+    dir = 'SW';
+    document.getElementById("direction").src = "images/dolje_lijevo.png"
+}
+else if(angle < -67.5){
+    dir = 'S';
+    
+    document.getElementById("direction").src = "images/dolje.png"
+}
+else if(angle < -22.5){
+    dir = 'SE';
+    document.getElementById("direction").src = "images/dolje_desno.png"
+}
+else if(angle < 22.5){
+    dir = 'E';
+    document.getElementById("direction").src = "images/desno.png"
+}
+else if(angle < 67.5){
+    dir = 'NE';
+    document.getElementById("direction").src = "images/gore_desno.png"
+}
+else if(angle < 112.5){
+    dir = 'N';
+    document.getElementById("direction").src = "images/gore.png"
+}
+else if(angle < 157.5){
+    dir = 'NW';
+    document.getElementById("direction").src = "images/gore_lijevo.png"
+}
+else{
+    dir = 'W';
+    document.getElementById("direction").src = "images/lijevo.png"
+}
+
 
     console.log('dir = ' + dir);
 

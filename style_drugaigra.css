@@ -1,3 +1,25 @@
-#centriraj{
+
+
+#file {
+    
+    justify-content: center; /* Horizontally align items */
     align-items: center;
-}
+    margin-left: auto;
+    margin-right: auto;
+    width: 40%;
+  }
+
+  #file {
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Horizontally align items */
+  }
+  
+  #direction{
+    width: 2.25em;
+    height: 2.25em;
+  }
+
+  #odgovor{
+    display: inline-flex;
+  }

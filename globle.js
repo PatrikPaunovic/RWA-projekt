@@ -50,19 +50,21 @@ async function startGame() {
         let guessInput = document.getElementById("guess-input");
         const guess = guessInput.value;
         const resultMessage = document.getElementById("result-message");
-        guessInput.value = "";
         
-       if(guess < 6){
+        
+       
         // Check if the guess is correct
         if (guess.toLowerCase() === mysteryCountry.name.toLowerCase() && guesscounter <= 6) {
             // Display a message indicating that the guess is correct
             resultMessage.innerText = "Correct! The mystery country is " + mysteryCountry.name;
+            document.getElementById("guess-input").remove()
+            document.getElementById("guess-button").remove()
         } else {
             // Display a message indicating that the guess is incorrect
             if (guesscounter < 6) {
                 resultMessage.innerText = "Incorrect. Please try again.";
 
-            } else if(guesscounter >= 6){
+            } else {
                 resultMessage.innerText = "Izgubili ste, točna država je bila " + mysteryCountry.name;
                 var element = document.getElementById("guess-input");
                 element.remove();
@@ -71,7 +73,7 @@ async function startGame() {
                 element2.remove();
             }
         }
-    }
+    
         //if (retry == true) {
          //   document.getElementById('retry').innerHTML = "<button> Retry </button>";
         //}

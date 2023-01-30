@@ -98,3 +98,17 @@ p#result-message {
     font-weight: bold;
     color: red;
 }
+
+#file{
+    
+        display: flex;
+        flex-direction: column; /* Stack items vertically */
+        align-items: center; /* Horizontally align items */
+      
+      
+}
+.form-group{
+    display: flex;
+    flex-direction: column; /* Stack items vertically */
+    align-items: center; /* Horizontally align items */
+}
