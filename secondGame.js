@@ -2,7 +2,7 @@ async function selectMysteryCountry() {
     //const randomIndex = Math.floor(Math.random() * mysteryCountries.length);
     //return mysteryCountries[randomIndex];
 
-    let numberOfCountries = 11;
+    let numberOfCountries = 20;
     let randomId = Math.floor(Math.random() * numberOfCountries) + 1;
     console.log(randomId);
     const res = await fetch("http://localhost:5000/coordinates/" + randomId);
