@@ -1,6 +1,6 @@
 // Define a function to select a random mystery country from the array
 async function selectMysteryCountry() {
-    let numberOfCountries = 11;
+    let numberOfCountries = 20;
     let randomId = Math.floor(Math.random() * numberOfCountries) + 1;
     console.log(randomId);
     const res = await fetch("http://localhost:5000/countries/" + randomId);

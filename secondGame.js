@@ -1,4 +1,7 @@
 async function selectMysteryCountry() {
+    //const randomIndex = Math.floor(Math.random() * mysteryCountries.length);
+    //return mysteryCountries[randomIndex];
+
     let numberOfCountries = 11;
     let randomId = Math.floor(Math.random() * numberOfCountries) + 1;
     console.log(randomId);
