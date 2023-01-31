@@ -11,14 +11,18 @@
 <body>
     <div class="container">
         <div class="row">
-            <div class="col-md-12">
-                <h1 class="text-center text-primary">Globle: Daily Country Guessing</h1>
+            <div class="col-md-12"> <div id="return">
+                <a href="start.html">
+            <button class="btn btn-primary">Povratak na Glavni izbornik</button>
+        </a>
+        </div>
+    <h1 class="text-center text-primary">Globle: Country Guessing</h1> 
                 <hr>
             </div>
         </div>
         <div class="row">
             <div class="col-md-6 col-md-offset-3">
-                <h2>Mystery Country Clues:</h2>
+                <h2>Hintovi za traženu državu:</h2>
                 <ul id="clues-list" class="list-group">
                     <li id="hint1" class="list-group-item" ></li>
                     <li id="hint2" class="list-group-item" ></li>
@@ -29,17 +33,17 @@
                 <div id="file">
                 <form>
                     <div class="form-group">
-                        <label for="guess-input" class="tekst_pogadanja">Enter your guess:</label>
+                        <label for="guess-input" class="tekst_pogadanja">Unesi državu:</label>
                         <input type="text" class="form-control" id="guess-input">
                     </div>
                     <div align = center>
-                    <button type="submit" id="guess-button" class="btn btn-primary">Submit Guess</button>
+                    <button type="submit" id="guess-button" class="btn btn-primary">Ispitaj pokušaj</button>
                 </div>
                 </form>
                 <br>
                 <p id="result-message" class="alert"></p>
                 <a href="index.html">
-                    <div id="retry" class="btn btn-danger">Retry</div>
+                    <div id="retry" class="btn btn-danger">Ponovi igru</div>
                 </a>
             </div>
             </div>

@@ -1,8 +1,17 @@
-
+#top{
+  
+  display: flex;
+  flex-direction: row;
+}
+#return {
+  position: absolute;
+  left: 3%;
+  top: 2%;
+}
 
 #file {
     
-    justify-content: center; /* Horizontally align items */
+    justify-content: center; 
     align-items: center;
     margin-left: auto;
     margin-right: auto;
@@ -11,8 +20,8 @@
 
   #file {
     display: flex;
-    flex-direction: column; /* Stack items vertically */
-    align-items: center; /* Horizontally align items */
+    flex-direction: column; 
+    align-items: center; 
   }
   
   #direction{
@@ -22,4 +31,36 @@
 
   #odgovor{
     display: inline-flex;
+  }
+
+  @media only screen and (max-width: 767px) {
+    #return {
+      display: none;
+    }
+    
+    #top h1 {
+      font-size: 20px;
+    }
+    
+    #country {
+      width: 50%;
+      height: auto;
+    }
+    
+    .tekst_pogadanja {
+      font-size: 18px;
+    }
+    
+    #guess-input {
+      width: 70%;
+    }
+    
+    #direction {
+      width: 30%;
+      height: auto;
+    }
+    
+    #retry {
+      width: 50%;
+    }
   }

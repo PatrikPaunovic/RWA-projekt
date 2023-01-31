@@ -22,8 +22,9 @@ function loadHints(mysteryCountry,guess) {
 
 
 }
+let gotovo = false
 
-// Define a function to start the game
+// Stvaranje funkcije za pocetak igre
 async function startGame() {
     let count = 2;
     
@@ -36,16 +37,15 @@ async function startGame() {
     //document.getElementById("hint1").style.display = 'block';
 
 
-    // Set up event listener for the guess button
+    // Postavljanje event listenera za guess gumb
     const guessButton = document.getElementById("guess-button");
     guessButton.addEventListener("click", (event) => {
         event.preventDefault();
         guesscounter++;
-        if(guesscounter < 6)
-        loadHints(mysteryCountry,guesscounter);
+        
 
         
-        // Get the player's guess from the input field
+        // Uzimanje igracevog guessa
         
         let guessInput = document.getElementById("guess-input");
         const guess = guessInput.value;
@@ -53,16 +53,17 @@ async function startGame() {
         
         
        
-        // Check if the guess is correct
+        // Provjera ako je guess tocan
         if (guess.toLowerCase() === mysteryCountry.name.toLowerCase() && guesscounter <= 6) {
-            // Display a message indicating that the guess is correct
-            resultMessage.innerText = "Correct! The mystery country is " + mysteryCountry.name;
+            // Ispis da je unos tocan
+            gotovo = true
+            resultMessage.innerText = "Točno! Tražena država je " + mysteryCountry.name;
             document.getElementById("guess-input").remove()
             document.getElementById("guess-button").remove()
         } else {
-            // Display a message indicating that the guess is incorrect
+            // Ispis da je unos netocan
             if (guesscounter < 6) {
-                resultMessage.innerText = "Incorrect. Please try again.";
+                resultMessage.innerText = "Netočno. Pokušaj ponovo.";
 
             } else {
                 resultMessage.innerText = "Izgubili ste, točna država je bila " + mysteryCountry.name;
@@ -73,6 +74,9 @@ async function startGame() {
                 element2.remove();
             }
         }
+
+        if(guesscounter < 6 && gotovo == false)
+        loadHints(mysteryCountry,guesscounter);
     
         //if (retry == true) {
          //   document.getElementById('retry').innerHTML = "<button> Retry </button>";
@@ -80,7 +84,7 @@ async function startGame() {
     });
 }
 
-// Start the game when the page loads
+// Startamo igru kada se stranica loada
 window.addEventListener("load", startGame);
 const links = document.querySelectorAll('a[href^="#"]');
 

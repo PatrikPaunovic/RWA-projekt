@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Drug igra</title>
+        <title>Druga igra</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <link rel="stylesheet" type="text/css" href="style.css" />
         <link rel="stylesheet" type="text/css" href="style_drugaigra.css" />
@@ -13,21 +13,39 @@
     <body>
         
             <div id="file">
-            <h1 class="text-center text-primary">Globle: Daily Country Guessing</h1>   
-            <img id="country"/>                 
+             
+                    <div id="return">
+                        <a href="start.html">
+                    <button class="btn btn-primary">Povratak na Glavni izbornik</button>
+                </a>
+                </div>
+            <h1 class="text-center text-primary">Globle: Country Guessing</h1> 
+         
+            <img id="country"/>
+            <div class="col-md-12">
+                <h2>Prethodni pokušaji:</h2>
+                <ul id="clues-list" class="list-group">
+                    <li id="hint1" class="list-group-item" ></li>
+                    <li id="hint2" class="list-group-item" ></li>
+                    <li id="hint3" class="list-group-item" ></li>
+                    <li id="hint4" class="list-group-item" ></li>
+                    <li id="hint5" class="list-group-item" ></li>
+                    <li id="hint6" class="list-group-item" ></li>
+                </ul>   
+            </div>
+                          
             <label for="guess-input" class="tekst_pogadanja">Upiši pokušaj:</label>
             <div id="odgovor">
+                
             <input type="text" class="form-control" id="guess-input">
+        
             <img id="direction" src="images/quest.png">
         </div>
-                        <p id="result-message"></p>
-                    <button type="submit" id="guess-button" class="btn btn-primary">Ispitaj pokušaj</button>
+                  <p id="result-message"></p>
                 
-                <br>
+                    <button type="submit" id="guess-button" class="btn btn-primary">Ispitaj pokušaj</button>
+               
                 <p id="result-message" class="alert"></p>
-                <div id="">
-                   
-                </div>
                 <a href="druga_igra.html">
                     <button id="retry" class="btn btn-danger">Pokreni igru ponovno
                 </a>

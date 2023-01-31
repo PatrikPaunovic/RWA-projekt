@@ -1,7 +1,4 @@
 async function selectMysteryCountry() {
-    //const randomIndex = Math.floor(Math.random() * mysteryCountries.length);
-    //return mysteryCountries[randomIndex];
-
     let numberOfCountries = 11;
     let randomId = Math.floor(Math.random() * numberOfCountries) + 1;
     console.log(randomId);
@@ -13,6 +10,11 @@ async function selectMysteryCountry() {
 
     showPicture(id);
     return data[0];
+}
+
+function loadStariUnosi(guess, count, ispis1, ispis2) {
+
+    document.getElementById("hint" + count).innerHTML = guess + " - Udaljenost = " + ispis1 + " km, smjer = " + ispis2;
 }
 
 function showPicture(id){
@@ -30,10 +32,13 @@ async function startGame() {
 
     let len = countryNames.length;
     
-    // Select a random mystery country
+    // Uzmemo random drzavu
     const mysteryCountry = await selectMysteryCountry();
     console.log(mysteryCountry['name']);
 
+    let ispis1;
+    let ispis2;
+    let brojac = 0;
     let idMystery = mysteryCountry['id'];
     let eastMistery = parseFloat(mysteryCountry['dms_e']);
     let northMistery = parseFloat(mysteryCountry['dms_n']);
@@ -41,7 +46,7 @@ async function startGame() {
 
     const guessButton = document.getElementById("guess-button");
     guessButton.addEventListener("click", async () => {
-        // Get the player's guess from the input field
+        // Uzimamo igracev guess
         const guessInput = document.getElementById("guess-input");
         const guess = guessInput.value;
         const resultMessage = document.getElementById("result-message");
@@ -56,58 +61,64 @@ async function startGame() {
 
         console.log(countryExists);
 
-        if(!countryExists) resultMessage.innerText = "This country doesn't exists in our database. Please try again.";
+        if(!countryExists) resultMessage.innerText = "Ova država ne postoji u našoj bazi podataka. Molimo ponovite upis";
+        
         else{
+            let idGuess = 0;
+            for(let  i=0; i<len; i++){
+                const {name} = countryNames[i];
+                console.log(name);
+                if(guess.toLowerCase() === name.toLowerCase()) idGuess = i + 1;
+            }
+            let countryGuess = await (await fetch("http://localhost:5000/coordinates/" + idGuess)).json();
+            let eastGuess = parseInt(countryGuess[0]['dms_e']);
+            let northGuess = parseInt(countryGuess[0]['dms_n']);
+            direction(northGuess,eastGuess,northMistery,eastMistery);
             if (guess.toLowerCase() === mysteryCountry.name.toLowerCase() && count <= 6) {
-                // Display a message indicating that the guess is correct
-                resultMessage.innerText = "Correct! The mystery country is " + mysteryCountry.name;
+                // Ispis da je guess tocan
+                resultMessage.innerText = "Točno! Tražena država je " + mysteryCountry.name;
                 document.getElementById("guess-input").remove();
                 document.getElementById("guess-button").remove();
                 document.getElementById("direction").remove();
             } else {
-                // Display a message indicating that the guess is incorrect
-                if (count < 6) {
+                // Ispis da je guess kriv
+                if (count < 7) {
                     count++;
                     
-
-                    let idGuess = 0;
-                    for(let  i=0; i<len; i++){
-                        const {name} = countryNames[i];
-                        console.log(name);
-                        if(guess.toLowerCase() === name.toLowerCase()) idGuess = i + 1;
-                    }
-                    //console.log('id drzave = '+idGuess);
-
-                    let countryGuess = await (await fetch("http://localhost:5000/coordinates/" + idGuess)).json();
                     console.log(countryGuess[0]);
                     //const {id, name, dms_e, dms_n} = countryGuess[0];
                     //console.log(dms_e);
                     console.log(countryGuess[0]['dms_n']);
 
-                    let eastGuess = parseInt(countryGuess[0]['dms_e']);
-                    let northGuess = parseInt(countryGuess[0]['dms_n']);
                     console.log('id drzave = ' + idGuess + ', east = ' + eastGuess + ', north = ' + northGuess);
                     console.log(typeof(eastGuess));
 
                     console.log('dis = ' + haversine(northGuess,eastGuess,northMistery,eastMistery));
 
-                    direction(northGuess,eastGuess,northMistery,eastMistery);
 
-                    resultMessage.innerText = "Incorrect. Distance = " + (haversine(northGuess,eastGuess,northMistery,eastMistery)/1000).toFixed(2) + "km, dir = " + direction(northGuess,eastGuess,northMistery,eastMistery) + ". Please try again.";
+                    resultMessage.innerText = "Netočno. Udaljenost = " + (haversine(northGuess,eastGuess,northMistery,eastMistery)/1000).toFixed(2) + "km, smjer = " + direction(northGuess,eastGuess,northMistery,eastMistery) + ". Pokušaj ponovo.";
+                    ispis1 = (haversine(northGuess,eastGuess,northMistery,eastMistery)/1000).toFixed(2);
+                    ispis2 = direction(northGuess,eastGuess,northMistery,eastMistery);
+                    brojac++;
+                    loadStariUnosi(guess, brojac, ispis1, ispis2);
                     document.getElementById("guess-input").value = "";
+                    
                 }
                 else{
+                    ispis1 = (haversine(northGuess,eastGuess,northMistery,eastMistery)/1000).toFixed(2);
+                    ispis2 = direction(northGuess,eastGuess,northMistery,eastMistery);
+                    brojac++;
+                    loadStariUnosi(guess, brojac, ispis1, ispis2);
+                    document.getElementById("hint6").value="lol"
                     resultMessage.innerText = "Izgubili ste, točna država je bila " + mysteryCountry.name;
                     document.getElementById("guess-input").remove()
                     document.getElementById("guess-button").remove()
-                    //retry provjerava ako je izgubio da se moze stvoriti button za restartanje igre
-                    retry = true;
+                    
                 }
                 
             }
            
         }
-        
     });
 }
 
