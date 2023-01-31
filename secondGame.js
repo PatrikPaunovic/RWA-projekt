@@ -61,8 +61,9 @@ async function startGame() {
             if (guess.toLowerCase() === mysteryCountry.name.toLowerCase() && count <= 6) {
                 // Display a message indicating that the guess is correct
                 resultMessage.innerText = "Correct! The mystery country is " + mysteryCountry.name;
-                document.getElementById("guess-input").remove()
-                document.getElementById("guess-button").remove()
+                document.getElementById("guess-input").remove();
+                document.getElementById("guess-button").remove();
+                document.getElementById("direction").remove();
             } else {
                 // Display a message indicating that the guess is incorrect
                 if (count < 6) {
